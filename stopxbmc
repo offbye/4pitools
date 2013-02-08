@@ -1,0 +1,5 @@
+#!/bin/bash
+sudo /etc/init.d/xbmc stop
+if [[ $? -eq 0 ]];then
+   echo "xbmc server is stop"
+fi
