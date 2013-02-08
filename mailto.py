@@ -7,6 +7,8 @@ from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 from email.MIMEImage import MIMEImage
 import smtplib
+import getopt
+import sys
 
 def sendEmail(authInfo, fromAdd, toAdd, subject, plainText, htmlText,picture):
 
@@ -55,13 +57,18 @@ def sendEmail(authInfo, fromAdd, toAdd, subject, plainText, htmlText,picture):
         return False 
     return True 
 
-defaultAuth = {'server': 'smtp.163.com' , 'user':'yourname@163.com' , 'passwd': 'yourpasswd' }
-
-if __name__ == '__main__' :
+def main(argv):
+    opts, args = getopt.getopt(argv, "hg:d", ["help", "user=","passwd="])
+    print opts[1]
     fromAdd = defaultAuth['user'] 
     toAdd   = ['']
     subject = ''
     plainText = ''
     htmlText=''
     picture=''
-    sendEmail(defaultAuth, fromAdd, toAdd, subject, plainText, htmlText,picture)
+    #sendEmail(defaultAuth, fromAdd, toAdd, subject, plainText, htmlText,picture)
+
+defaultAuth = {'server': 'smtp.163.com' , 'user':'yourname@163.com' , 'passwd': 'yourpasswd' }
+
+if __name__ == '__main__' :
+    main(sys.argv[1:])
