@@ -66,7 +66,7 @@ def main(argv):
     plainText = ''
     htmlText=''
     picture=''
-    #sendEmail(defaultAuth, fromAdd, toAdd, subject, plainText, htmlText,picture)
+    sendEmail(defaultAuth, fromAdd, toAdd, subject, plainText, htmlText,picture)
 
 defaultAuth = {'server': 'smtp.163.com' , 'user':'yourname@163.com' , 'passwd': 'yourpasswd' }
 
