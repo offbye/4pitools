@@ -58,10 +58,10 @@ def sendEmail(authInfo, fromAdd, toAdd, subject, plainText, htmlText,picture):
     return True 
 
 def main(argv):
-    opts, args = getopt.getopt(argv, "hg:d", ["help", "user=","passwd="])
-    print opts[1]
-    fromAdd = defaultAuth['user'] 
-    toAdd   = ['']
+    opts, args = getopt.getopt(argv, "hg:d", ["help", "conf=","f="])
+	## TODO: create user parameters
+    fromAdd = defaultAuth['user']
+    toAdd   = ['']	
     subject = ''
     plainText = ''
     htmlText=''

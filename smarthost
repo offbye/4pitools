@@ -1,0 +1,17 @@
+#!/bin/bash
+hostspath="/cygdrive/c/Windows/System32/drivers/etc"
+wget --no-check-certificate https://smarthosts.googlecode.com/svn/trunk/hosts -O /tmp/hosts
+
+cat /tmp/hosts |grep '#UPDATE' >>  $hostspath'/hosts.tmp'
+
+sed -e '/#SmartHosts START/,/#SmartHosts END/d' -e '1,1d' $hostspath'/hosts' >> $hostspath'/hosts.tmp'
+
+sed -n '/#SmartHosts START/,/#SmartHosts END/p' /tmp/hosts >> $hostspath'/hosts.tmp'
+
+mv $hostspath'/hosts' $hostspath'/hosts.bak'
+mv $hostspath'/hosts.tmp' $hostspath'/hosts'
+
+echo 'update to '
+head -n 1 $hostspath'/hosts'
+
+rm -f /tmp/hosts 
