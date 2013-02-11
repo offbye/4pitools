@@ -1,6 +1,26 @@
 #!/bin/bash
-hostspath="/cygdrive/c/Windows/System32/drivers/etc"
-wget --no-check-certificate https://smarthosts.googlecode.com/svn/trunk/hosts -O /tmp/hosts
+printUsage(){
+    echo 'smarthost <hosts> hosts file directory.'
+}
+
+if [[ $# -eq 1 ]];then
+    hostspath=$1
+fi
+
+if [[ $OS == "UNIX" ]];then
+    hostspath="/etc"
+fi
+
+if [[ $OS == "Windows_NT" ]];then
+    hostspath="/cygdrive/c/Windows/System32/drivers/etc"
+fi
+
+if [[ $hostspath == "" ]];then
+    printUsage;
+fi
+
+echo "hosts file's directory is "$hostspath
+nohup wget --no-check-certificate https://smarthosts.googlecode.com/svn/trunk/hosts -O /tmp/hosts >>/dev/null 2>&1
 
 cat /tmp/hosts |grep '#UPDATE' >>  $hostspath'/hosts.tmp'
 
