@@ -5,14 +5,14 @@ printUsage(){
 
 if [[ $# -eq 1 ]];then
     hostspath=$1
-fi
-
-if [[ $OS == "UNIX" ]];then
-    hostspath="/etc"
-fi
-
-if [[ $OS == "Windows_NT" ]];then
-    hostspath="/cygdrive/c/Windows/System32/drivers/etc"
+else
+    if [[ $OS == "UNIX" ]];then
+        hostspath="/etc"
+    fi
+    
+    if [[ $OS == "Windows_NT" ]];then
+        hostspath="/cygdrive/c/Windows/System32/drivers/etc"
+    fi
 fi
 
 if [[ $hostspath == "" ]];then
